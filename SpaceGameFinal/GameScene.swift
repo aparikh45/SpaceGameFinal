@@ -10,10 +10,18 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene {
-  
+    
+    var player:SKSpriteNode!
+    
     override func didMove(to view: SKView) {
         
         createBackground()
+        
+        player = SKSpriteNode(imageNamed: "spaceship")
+        player.position = CGPoint(x: frame.midX , y: frame.minY + 125 )
+        player.physicsBody = SKPhysicsBody(rectangleOf: player.size)
+        player.physicsBody?.isDynamic = false
+        self.addChild(player)
         
     }
     
@@ -32,4 +40,18 @@ class GameScene: SKScene {
         }
     }
 
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch in touches {
+            let location = touch.location(in: self)
+            player.position.x = location.x
+        }
+    }
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch in touches {
+            let location = touch.location(in: self)
+            player.position.x = location.x
+        }
+    }
+    
+    
 }

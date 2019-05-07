@@ -12,6 +12,7 @@ import GameplayKit
 class GameScene: SKScene {
     
     var player:SKSpriteNode!
+    var aliensDestroyed:Int = 0
     
     override func didMove(to view: SKView) {
         
@@ -22,6 +23,7 @@ class GameScene: SKScene {
         player.physicsBody = SKPhysicsBody(rectangleOf: player.size)
         player.physicsBody?.isDynamic = false
         self.addChild(player)
+   
         
     }
     
@@ -46,12 +48,12 @@ class GameScene: SKScene {
             player.position.x = location.x
         }
     }
+    
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let location = touch.location(in: self)
             player.position.x = location.x
         }
     }
-    
     
 }

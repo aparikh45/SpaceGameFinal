@@ -14,6 +14,14 @@ class GameScene: SKScene {
     var player:SKSpriteNode!
     var aliensDestroyed:Int = 0
     
+    var scoreLabel = SKLabelNode()
+    var score:Int = 0 {
+        didSet{
+            scoreLabel.text = "Score: \(score)"
+        }
+    
+    }
+    
     override func didMove(to view: SKView) {
         
         createBackground()
@@ -25,6 +33,14 @@ class GameScene: SKScene {
         self.addChild(player)
    
         
+        scoreLabel = SKLabelNode(text: "Score: 0")
+        scoreLabel.position = CGPoint(x: -90, y: 350)
+        scoreLabel.fontName = "AmericanTypewriter-Bold"
+        scoreLabel.fontColor = UIColor.white
+        scoreLabel.fontSize = 36
+        score = 0
+        
+        self.addChild(scoreLabel)
     }
     
     func createBackground() {
